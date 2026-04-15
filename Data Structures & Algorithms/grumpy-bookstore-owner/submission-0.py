@@ -1,0 +1,15 @@
+class Solution:
+    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
+        grumpySum = 0
+        for i in range(len(customers)):
+            if grumpy[i]==0:
+                grumpySum+=customers[i]
+        satisfied = 0
+        for i in range(len(customers)):
+            curr = grumpySum
+            for j in range(i, min(len(customers),i+minutes)):
+                if grumpy[j]==1:
+                    curr+=customers[j]
+            satisfied = max(curr,satisfied)
+        return satisfied
+        
